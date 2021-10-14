@@ -21,19 +21,27 @@ env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   CONTAINER_IMAGE: guestbook:${{ github.sha }}
+  EKS_TAG: elastio-backup
 
 jobs:
   build-and-push:
     name: Build and deploy
+#     runs-on: ubuntu-latest
     runs-on: self-hosted
     steps:
     
     - name: Checkout
       uses: actions/checkout@master
+      
+#     - name: Install Elastio
+#       run: sudo /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/elastio/elastio-stack/master/scripts/install-elastio.sh)"
+
+#     - name: Install mysql and python
+#       run: sudo apt install mysql-client-core-8.0
 
     # Add steps here like linting, testing, minification, etc.
-    - name: Take Backup.
-      run: sudo -E elastio ebs backup --volume-id vol-06c6887dcadf9a15b
+    - name: Take Backup of EBS Volumes of EKS.
+      run: chmod 755 ebsbackup.sh && ./ebsbackup.sh $EKS_TAG
 
     - name: Setup ECR
       run: |
