@@ -1,17 +1,11 @@
 # build.yml
 on:
   pull_request:
-    paths:
-    - "**/*.yml"
-    - "**/*.html"
   push:
-    paths:
-    - "**/*.yml"
-    - "**/*.html"
     branches:         # array of glob patterns matching against refs/heads. Optional; defaults to all
     - master          # triggers on pushes that contain changes in master
 
-name: Build and Push an Image to ECR
+name: Backup Resources , Build and Push an Image to ECR
 
 # https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html
 env:
@@ -26,19 +20,12 @@ env:
 jobs:
   build-and-push:
     name: Build and deploy
-#     runs-on: ubuntu-latest
     runs-on: self-hosted
     steps:
     
     - name: Checkout
       uses: actions/checkout@master
-      
-#     - name: Install Elastio
-#       run: sudo /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/elastio/elastio-stack/master/scripts/install-elastio.sh)"
-
-#     - name: Install mysql and python
-#       run: sudo apt install mysql-client-core-8.0
-
+  
     # Add steps here like linting, testing, minification, etc.
     - name: Take Backup of EBS Volumes of EKS.
       run: chmod 755 ebsbackup.sh && ./ebsbackup.sh $EKS_TAG
