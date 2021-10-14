@@ -27,17 +27,14 @@ jobs:
     name: Build and deploy
     runs-on: self-hosted
     steps:
-
-
-      
+    
     - name: Checkout
       uses: actions/checkout@master
 
     # Add steps here like linting, testing, minification, etc.
-      
-    - name: Checkout
-      run: whoami
-      
+    - name: Take Backup.
+      run: sudo -E elastio ebs backup --volume-id vol-06c6887dcadf9a15b
+
     - name: Setup ECR
       run: |
         # Login to AWS ECR
