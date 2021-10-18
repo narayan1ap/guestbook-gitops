@@ -52,7 +52,7 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "INSERT INTO test.authors (first_name, last_name, email, birthdate, added) values ("john1","max1","john1@max1.com",now(),now());";
+$sql = "INSERT INTO test.authors (first_name, last_name, email, birthdate, added) values ('john2','max2','john2@max2.com',now(),now());";
 
 if ($conn->query($sql) === TRUE) {
   echo "Record updated successfully";
