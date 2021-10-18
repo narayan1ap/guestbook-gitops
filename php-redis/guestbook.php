@@ -42,11 +42,10 @@ if (isset($_GET['cmd']) === true) {
 
 $servername = "database-1.ckwko5qiar43.us-east-2.rds.amazonaws.com";
 $username = "admin";
-$password = "pass12";
 $dbname = "test";
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $username, $PASS, $dbname);
 // Check connection
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
