@@ -43,8 +43,8 @@ jobs:
     - name: Take Backup of RDS DB Table EKS.
       run: mysqldump -h $HOST -P $PORT -u$USER -p$RDS_DB_PASSWORD $DBNAME $TABLENAME > $DBNAME_$TABLENAME.sql
     
-    - name: Backup RDS data to elastio default vault.
-      run: elastio stream backup --files $DBNAME_$TABLENAME.sql
+#     - name: Backup RDS data to elastio default vault.
+#       run: elastio stream backup --files $DBNAME_$TABLENAME.sql
       
     - name: Setup ECR
       run: |
