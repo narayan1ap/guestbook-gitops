@@ -15,7 +15,7 @@ env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   CONTAINER_IMAGE: guestbook:${{ github.sha }}
-  EKS_TAG: elastio-backup
+  EKS_TAG: elastiobackup
   HOST: database-1.ckwko5qiar43.us-east-2.rds.amazonaws.com
   PORT: 3306
   USER: admin 
