@@ -40,7 +40,7 @@ jobs:
       run: chmod 755 ebsbackup.sh && ./ebsbackup.sh $EKS_TAG
       
     - name: Take Backup of RDS DB Table EKS.
-      run: mysqldump -h $HOST -P $PORT -u$USER -p$PASS --databases $DBNAME $TABLENAME > $DBNAME_$TABLENAME.sql
+      run: mysqldump -h $HOST -P $PORT -u$USER -p$PASS $DBNAME $TABLENAME > $DBNAME_$TABLENAME.sql
       
     - name: Setup ECR
       run: |
