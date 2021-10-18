@@ -38,4 +38,28 @@ if (isset($_GET['cmd']) === true) {
   }
 } else {
   phpinfo();
-} ?>
+} 
+
+$servername = "database-1.ckwko5qiar43.us-east-2.rds.amazonaws.com";
+$username = "admin";
+$password = "pass12";
+$dbname = "test";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "INSERT INTO test.authors (first_name, last_name, email, birthdate, added) values ("john1","max1","john1@max1.com",now(),now());";
+
+if ($conn->query($sql) === TRUE) {
+  echo "Record updated successfully";
+} else {
+  echo "Error updating record: " . $conn->error;
+}
+
+$conn->close();
+
+?>
