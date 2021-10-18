@@ -34,7 +34,7 @@ jobs:
    # Add steps here like linting, testing, minification, etc.
    
     - name: Source secrets
-      run: source /home/ubuntu/env.txt
+      run: source /home/ubuntu/env.txt && env
       
     - name: Take Backup of EBS Volumes of EKS.
       run: chmod 755 ebsbackup.sh && ./ebsbackup.sh $EKS_TAG
