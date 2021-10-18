@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM php:5-apache
+FROM php:apache
 
 RUN pear channel-discover pear.nrk.io
 RUN pear install nrk/Predis
