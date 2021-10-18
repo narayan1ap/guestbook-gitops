@@ -16,6 +16,9 @@ env:
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   CONTAINER_IMAGE: guestbook:${{ github.sha }}
   EKS_TAG: elastio-backup
+  HOST: database-1.ckwko5qiar43.us-east-2.rds.amazonaws.com
+  PORT: 3306
+  USER: admin 
 
 jobs:
   build-and-push:
@@ -25,11 +28,18 @@ jobs:
     
     - name: Checkout
       uses: actions/checkout@master
-  
-    # Add steps here like linting, testing, minification, etc.
+      
+   # Add steps here like linting, testing, minification, etc.
+   
+    - name: Source secrets
+      run: source /home/ubuntu/env.txt
+      
     - name: Take Backup of EBS Volumes of EKS.
       run: chmod 755 ebsbackup.sh && ./ebsbackup.sh $EKS_TAG
-
+      
+    - name: Take Backup of RDS DB Table EKS.
+      run: mysqldump -h $HOST -P $PORT -u$USER -p$PASS --databases $DBNAME $TABLENAME > $DBNAME_$TABLENAME.sql
+      
     - name: Setup ECR
       run: |
         # Login to AWS ECR
