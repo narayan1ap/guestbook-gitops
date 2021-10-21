@@ -34,14 +34,14 @@ jobs:
       
    # Add steps here like linting, testing, minification, etc.
    
-    - name: Source secrets
-      run: source /home/ubuntu/env.txt && env
+#     - name: Source secrets
+#       run: source /home/ubuntu/env.txt && env
       
-    - name: Take Backup of EBS Volumes of EKS in elastio default vault.
-      run: chmod 755 ebsbackup.sh && ./ebsbackup.sh $EKS_TAG
+#     - name: Take Backup of EBS Volumes of EKS in elastio default vault.
+#       run: chmod 755 ebsbackup.sh && ./ebsbackup.sh $EKS_TAG
       
-    - name: Take Backup of RDS DB Table EKS.
-      run: mysqldump -h $HOST -P $PORT -u$USER -p$RDS_DB_PASSWORD $DBNAME $TABLENAME > $DBNAME_$TABLENAME.sql
+#     - name: Take Backup of RDS DB Table EKS.
+#       run: mysqldump -h $HOST -P $PORT -u$USER -p$RDS_DB_PASSWORD $DBNAME $TABLENAME > $DBNAME_$TABLENAME.sql
     
 #     - name: Backup RDS data to elastio default vault.
 #       run: elastio stream backup --files $DBNAME_$TABLENAME.sql
